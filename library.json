@@ -17,11 +17,12 @@
     },
     {
       "name": "TheClockTwister",
+      "url": "https://github.com/TheClockTwister/cryptopp-pio",
       "maintainer": true
     }
   ],
   "license": "BSL-1.0",
-  "homepage": "https://github.com/weidai11/cryptopp",
+  "homepage": "https://github.com/TheClockTwister/cryptopp-pio",
   "dependencies": {},
   "frameworks": "*",
   "platforms": "*"
