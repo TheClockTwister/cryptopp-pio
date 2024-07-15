@@ -1,4 +1,6 @@
-# Crypto++
+# [Crypto++](https://github.com/weidai11/cryptopp) for [PlatformIO](https://docs.platformio.org/en/latest)
+
+**The only cryptography library you need is [cryptopp](https://github.com/weidai11/cryptopp) created by Wei Dai! No matter the operating system or platform :)**
 
 This is the original source code from [cryptopp](https://github.com/weidai11/cryptopp)
 packaged in a format usable by the PlatformIO packet manager, so it can be used for
