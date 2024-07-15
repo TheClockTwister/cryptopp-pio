@@ -7,8 +7,24 @@
     "srcDir": ".",
     "includeDir": ".",
     "srcFilter": "+<**/*.cpp>",
-    "flags": "-D CRYPTOPP_DISABLE_ASM=1 -D CRYPTOPP_DISABLE_MIXED_ASM=1"
+    "flags": "-frtti -D CRYPTOPP_DISABLE_ASM=1 -D CRYPTOPP_DISABLE_MIXED_ASM=1"
   },
+  "examples": [
+    {
+      "name": "MD5 Hash",
+      "base": "examples",
+      "files": [
+        "mf5.cpp"
+      ]
+    },
+    {
+      "name": "AES-128 GCM",
+      "base": "examples",
+      "files": [
+        "aes-gcm.cpp"
+      ]
+    }
+  ],
   "authors": [
     {
       "name": "weidai11",
