@@ -1,12 +1,98 @@
 # Crypto++
 
-This is the original source code from [cryptopp](https://github.com/weidai11/cryptopp).
+This is the original source code from [cryptopp](https://github.com/weidai11/cryptopp)
+packaged in a format usable by the PlatformIO packet manager, so it can be used for
+development on embedded devices (like ESP8266, ESP32, Arduino Uno, STM32 etc.)
+
+# Usage
+
+## Getting Started
+
+1. Install this library in your PlatformIO project using the CLI or in the `platformio.ini`:
+  ```bash
+  pio pkg install -p "theclocktwister/crypto++@^8.9.1"
+  ```
+2. Un-flag the `-fno-rtti` flag and add the `-ftti` compiler flag to prevent problems with `dynamic_cast` and `typeid`, since these
+   might have been disabled by the `-fno-rtti` flag.
+3. Write a simple hello world program:
+  ```c++
+  // This enables weak ciphers and hashes (like MD5)
+  #define CRYPTOPP_ENABLE_NAMESPACE_WEAK 1
+
+  #include <string>
+  #include <iostream>
+
+  #include <cryptopp/filters.h>
+  #include <cryptopp/md5.h>
+  #include <cryptopp/hex.h>
+
+  #include <Arduino.h>
+
+  /// @brief Calculates the binary digest of the input data
+  /// @return digest (as binary, not hex!)
+  std::string md5Binary(const std::string &data)
+  {
+      std::string digest;
+      CryptoPP::Weak::MD5 hash;
+      CryptoPP::StringSource(data, true, new CryptoPP::HashFilter(hash, new CryptoPP::StringSink(digest)));
+      return digest;
+  }
+
+  /// @brief SUPER USEFUL FOR DEBUGGING!!! Gets the hexa-decimal string of some binary data
+  std::string toHex(const std::string &s)
+  {
+      std::string output;
+      CryptoPP::HexEncoder encoder(new CryptoPP::StringSink(output));
+      CryptoPP::StringSource(s, true, new CryptoPP::Redirector(encoder));
+      return output;
+  }
+
+  /// @brief Calculate the hex-digest of the input
+  /// @return hexa-decimal digest
+  inline std::string md5Hex(const std::string &data) { return toHex(md5Binary(data)); }
+
+  void setup()
+  {
+      Serial.begin(115200); // use your baud rate from platformio.ini here !
+  }
+
+  void loop()
+  {
+      std::string message = "Hello there...";
+      auto hexDigest = md5Hex(message);
+
+      // just in case you did not know: std::cout is re-written to Serial by PlatformIO ;)
+      std::cout << "Message hash is: " << hexDigest << "\n";
+
+      delay(1000);
+  }
+  ```
+
+## Digging Deeper
+Crypto++ has a really good [wiki](https://www.cryptopp.com/wiki/Main_Page), covering almost all classes and functions and
+providing useful snippets to get involved right away.
+
+You can find everything you need there, I'm sure ;)
+
+
+## Common Problems
+
+### Linker error with `dynamic_cast` and `typeid`
+- This is likely to be caused by the cryptopp library depending on `dynamic_cast` and `typeid` at runtime.
+- Maybe you have the `-fno-rtti` compiler flag enabled (maybe by default).
+- Be sure to un-flag `-fno-rtti`
+- If that is not enough, add the `-ftti` flag explicitly
+
+
+
+# Meta Information
 
 ## Changes made to original code from GitHub
 - Removed text files
 - Removed Visual Studio files
 - Add `CRYPTOPP_DISABLE_ASM` and `CRYPTOPP_DISABLE_MIXED_ASM` compiler
   flags to `library.json` for ESP32 etc. to disable assembly usage
+- Add `-frtti` compiler flag to avoid build problems later on
 
 ## Versioning Schema
 - Versioning is done in semantic format `MAJOR`.`MINOR`.`PATCH`
