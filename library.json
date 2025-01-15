@@ -1,5 +1,5 @@
 {
-  "name": "Crypto++",
+  "name": "CryptoPP",
   "version": "8.9.1",
   "description": "A 1:1 port of the official Crypto++ library on GitHub by weidai11",
   "keywords": "crypto, crypto++, cryptopp, aes, rsa, sha, sha1, sha2, sha3, md5, serpent, twofish, blowfish, simeck, threefish, hmac, blake2b, blake2s, cmac, dsa, elgamal, pkcs, keccack, ecdsa",
