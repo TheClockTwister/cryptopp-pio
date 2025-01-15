@@ -8,7 +8,7 @@
     "includeDir": ".",
     "srcFilter": "+<**/*.cpp>",
     "unflags": "-fno-rtti",
-    "flags": "-frtti -D CRYPTOPP_DISABLE_ASM=1 -D CRYPTOPP_DISABLE_MIXED_ASM=1"
+    "flags": "-frtti -fexceptions -Wno-error=return-type -Wno-error=unknown-pragmas -D CRYPTOPP_DISABLE_ASM=1 -D CRYPTOPP_DISABLE_MIXED_ASM=1"
   },
   "examples": [
     {
