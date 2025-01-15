@@ -6,7 +6,7 @@
   "build": {
     "srcDir": ".",
     "includeDir": ".",
-    "srcFilter": "+<**/*.cpp>",
+    "srcFilter": "+<cryptopp/**/*.cpp>",
     "unflags": "-fno-rtti",
     "flags": "-frtti -fexceptions -Wno-error=return-type -Wno-error=unknown-pragmas -D CRYPTOPP_DISABLE_ASM=1 -D CRYPTOPP_DISABLE_MIXED_ASM=1"
   },
